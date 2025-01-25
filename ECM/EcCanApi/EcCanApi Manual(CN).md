@@ -1,22 +1,21 @@
-## CAN通讯库(EcCanApi)使用说明
-------
+# CAN通讯库(EcCanApi)使用说明
 wanglinqiang  2020年4月21日 20:25:18
 
-### 概要
+## 概要
 EcCanApi.dll是ELMEC公司基于Vector公司的Vector XL Driver Library开发而成，主要应用在PC和ECM之间CAN通讯上，在使用本DLL时必须要有Vector公司开发的vxlapi.dll文件，与ECM之间的通讯设备必须是Vector公司出品的CAN设备。
 
 本文档仅对DLL中的函数接口及使用上注意点加以说明，对ECM时使用代码格式请参考ECM生产厂家提供的资料，这里不做说明。
 
 本文档仅对C/C++语言函数调用加以说明，对其它语言(如VB、C#等等)不做说明。
 
-#### 本DLL的特性
+### 本DLL的特性
 
 + 最大支持4个CAN通道
 + 支持CAN和CAN-FD总线类型
 + 支持CAN ID的基本帧(11bit)和扩展帧(29bit)收发模式
 
 
-#### 本DLL的包含文件及说明
+### 本DLL的包含文件及说明
 
 | Function name | Commend |
 | :--- | :--- |
@@ -26,13 +25,13 @@ EcCanApi.dll是ELMEC公司基于Vector公司的Vector XL Driver Library开发而
 | EcCanApi64.dll | 在64位APP调用时的DLL文件名 |
 | EcCanApi64.lib | 静态调用64位DLL时使用 |
 
-<div STYLE="page-break-after: always;"></div>
-### 函数调用流程
+
+## 函数调用流程
 请参考下图
 ![image-20200326115842980](C:\Users\wang\AppData\Roaming\Typora\typora-user-images\image-20200326115842980.png)
 
-<div STYLE="page-break-after: always;"></div>
-### 函数使用说明
+
+## 函数使用说明
 本DLL包含函数及简介
 | Function name | Commend |
 | :--- | :--- |
@@ -51,8 +50,8 @@ EcCanApi.dll是ELMEC公司基于Vector公司的Vector XL Driver Library开发而
 | elcCanDoSrlState() | SRL状态命令通讯接口（不建议使用） |
 | elcCanDoSrlStop() | SRL停止命令通讯接口（不建议使用） |
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanCreate()
+
+## elcCanCreate()
 **函数原型**
 
 ```cpp
@@ -70,8 +69,8 @@ DWORD elcCanCreate(int ch, void* szLogDir)
 + 0: 调用成功
 + 其它值：调用失败，详细错误代码一栏
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDelete()
+
+## elcCanDelete()
 **函数原型**
 ```cpp
 DWORD elcCanDelete(int ch)
@@ -87,8 +86,8 @@ DWORD elcCanDelete(int ch)
 + 0: 调用成功
 + 其它值：调用失败，详细错误代码一栏
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanOpen()
+
+## elcCanOpen()
 **函数原型**
 ```cpp
 DWORD elcCanOpen(int ch, void* p)
@@ -133,8 +132,8 @@ typedef struct
 #pragma pack (pop)
 ```
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanClose()
+
+## elcCanClose()
 **函数原型**
 ```cpp
 DWORD elcCanClose(int ch)
@@ -151,8 +150,8 @@ DWORD elcCanClose(int ch)
 
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoCmd()
+
+## elcCanDoCmd()
 **函数原型**
 ```cpp
 DWORD elcCanDoCmd(int ch, BYTE* pSendData, BYTE* pRecvData)
@@ -254,8 +253,8 @@ elcCanDelete(nCanCh);
 
 return 0;
 ```
-<div STYLE="page-break-after: always;"></div>
-### elcCanSetEcmType()
+
+## elcCanSetEcmType()
 
 ------
 
@@ -274,8 +273,8 @@ DWORD elcCanSetEcmType(int ch, int EcmType)
 + 0: 调用成功
 + 其它值：调用失败，详细错误代码一栏
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoMi()
+
+## elcCanDoMi()
 **函数原型**
 ```cpp
 DWORD elcCanDoMi(int ch, DWORD dwDID, BYTE* pRecvData)
@@ -293,8 +292,8 @@ DWORD elcCanDoMi(int ch, DWORD dwDID, BYTE* pRecvData)
 + 其它值：调用失败，详细错误代码一栏
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoPs()
+
+## elcCanDoPs()
 **函数原型**
 ```cpp
 DWORD elcCanDoPs(int ch, DWORD dwDID, int type, DWORD data, BYTE* pRecvData)
@@ -314,8 +313,8 @@ DWORD elcCanDoPs(int ch, DWORD dwDID, int type, DWORD data, BYTE* pRecvData)
 + 其它值：调用失败，详细错误代码一栏
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoPsReset()
+
+## elcCanDoPsReset()
 **函数原型**
 ```cpp
 DWORD elcCanDoPsReset(int ch, DWORD dwDID, BYTE* pRecvData)
@@ -333,8 +332,8 @@ DWORD elcCanDoPsReset(int ch, DWORD dwDID, BYTE* pRecvData)
 + 其它值：调用失败，详细错误代码一栏
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoTcc()
+
+## elcCanDoTcc()
 **函数原型**
 ```cpp
 DWORD elcCanDoTcc(int ch, BYTE* pRecvData)
@@ -352,8 +351,8 @@ DWORD elcCanDoTcc(int ch, BYTE* pRecvData)
 
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoTcr()
+
+## elcCanDoTcr()
 **函数原型**
 ```cpp
 DWORD elcCanDoTcr(int ch, BYTE* pRecvData)
@@ -371,8 +370,8 @@ DWORD elcCanDoTcr(int ch, BYTE* pRecvData)
 
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoSrlStart()
+
+## elcCanDoSrlStart()
 **函数原型**
 ```cpp
 DWORD elcCanDoSrlStart(int ch, DWORD dwDID, BYTE* pRecvData)
@@ -392,8 +391,8 @@ DWORD elcCanDoSrlStart(int ch, DWORD dwDID, BYTE* pRecvData)
 
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoSrlState()
+
+## elcCanDoSrlState()
 **函数原型**
 ```cpp
 DWORD elcCanDoSrlState(int ch, DWORD dwDID, BYTE* pRecvData)
@@ -412,8 +411,8 @@ DWORD elcCanDoSrlState(int ch, DWORD dwDID, BYTE* pRecvData)
 
 
 
-<div STYLE="page-break-after: always;"></div>
-### elcCanDoSrlStop()
+
+## elcCanDoSrlStop()
 **函数原型**
 ```cpp
 DWORD elcCanDoSrlStop(int ch, DWORD dwDID, BYTE* pRecvData)
@@ -432,8 +431,7 @@ DWORD elcCanDoSrlStop(int ch, DWORD dwDID, BYTE* pRecvData)
 
 
 
-<div STYLE="page-break-after: always;"></div>
-### 错误代码列表
+## 错误代码列表
 
 | Decimal | Hex | Commend |
 | :---- | :---- | :---- |
